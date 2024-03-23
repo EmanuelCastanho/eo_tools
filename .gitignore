@@ -1,3 +1,20 @@
+### shp_to_dic ###
+# Ignore folder created during process
+shp_to_dic/output_dictionaries/*
+
+# Ignore shapefiles, besides example
+shp_to_dic/input_shapefiles/*
+!shp_to_dic/input_shapefiles/d_joao_castro_py2/
+
+### split_into_tiles ###
+# Ignore folder created during process
+split_into_tiles/results/*
+
+# Ignore TIF files, besides example
+split_into_tiles/data/*
+!split_into_tiles/data/example.tiff
+
+
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,python,dotenv
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,python,dotenv
