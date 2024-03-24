@@ -42,8 +42,14 @@ overlap = 0
 create_brand_new_folder("results")
 
 # Open TIF
-tif_open = gdal.Open(tif_path)
+tif_open = gdal.Open(tif_path,1)
 tif_data = tif_open.ReadAsArray()
+
+# Select GDAL type based on first band
+# GDT_Byte - 1
+# GDT_Float32 - 6
+first_band_type = tif_open.GetRasterBand(1).DataType
+
 tif_shape = tif_data.shape
 tif_height = tif_shape[1]
 tif_width = tif_shape[2]
@@ -74,7 +80,7 @@ for y in y_points:
 
         # Init tile saving
         driver = gdal.GetDriverByName("GTiff")
-        tile_data = driver.Create(tile_path, tile_width, tile_height, tile_nbands, gdal.GDT_Float32)
+        tile_data = driver.Create(tile_path, tile_width, tile_height, tile_nbands, first_band_type)
         
         # Set georeference for the tile
         geo_transform = list(tif_open.GetGeoTransform())
